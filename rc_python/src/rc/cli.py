@@ -7,6 +7,7 @@ from rc.parse import load_spec
 from rc.report.json import render_json_report
 from rc.report.text import render_text_report
 from rc.rules.s1_intent_incentive_conflict import run_s1
+from rc.rules.s2_constraint_erosion import run_s2
 from rc.schema_validate import validate_schema
 from rc.semantic_validate import validate_semantics
 
@@ -35,6 +36,7 @@ def main() -> None:
         # 3) rules
         results = []
         results.append(run_s1(spec))
+        results.append(run_s2(spec))
 
         report = {
             "spec": str(spec_path),

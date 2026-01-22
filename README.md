@@ -284,6 +284,22 @@ What changed
 - Incentive dominance moved from speed to safety.
 - Result: intent and incentives align, and structural risk drops from CRITICAL to LOW.
 
+```
+S2: Constraint Erosion (Oversight Decay)  [MEDIUM]
+- fatal_constraints: 1
+- horizon_steps: 24
+- oversight_inversion: False
+- margin_threshold: 0.1
+- min_margin: 0.08
+- t_min_margin: 24
+Score: 0.2
+```
+Interpretation
+
+- No direct oversight inversion occurs (human review never drops below automation).
+- However, the oversight margin gradually thins over time.
+- By the end of the horizon, review capacity exceeds automation by only 0.08, below the safety margin of 0.10.
+
 ---
 
 ## What This Project Refuses to Do
