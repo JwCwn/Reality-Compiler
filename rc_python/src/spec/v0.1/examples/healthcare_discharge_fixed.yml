@@ -1,0 +1,39 @@
+version: "0.1"
+world:
+  name: "healthcare_discharge_fixed"
+  description: "Same system, but guardrails and incentives reinforce safety."
+
+intent:
+  priorities:
+    - safety
+    - cost
+
+constraints:
+  - id: "C1"
+    description: "False negatives must be rare."
+    metric: "false_negative_rate"
+    op: "<="
+    value: 0.01
+    severity: "fatal"
+
+incentives:
+  rewards:
+    - metric: "throughput"
+      weight: 0.6
+    - metric: "cost_reduction"
+      weight: 0.4
+  penalties:
+    - metric: "false_negative_rate"
+      weight: 1.4
+
+time:
+  horizon_steps: 24
+  dynamics:
+    - metric: "automation_ratio"
+      starts_at: 0.1
+      drift_per_step: 0.02
+      clamp: [0.0, 1.0]
+    - metric: "human_review_rate"
+      starts_at: 0.9
+      drift_per_step: -0.01
+      clamp: [0.0, 1.0]

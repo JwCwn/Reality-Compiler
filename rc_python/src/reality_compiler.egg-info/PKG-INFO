@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: reality-compiler
+Version: 0.1.0
+Summary: Reality Compiler
+Author: Your Name
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: PyYAML>=6.0.1
+Requires-Dist: jsonschema>=4.23.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.0; extra == "dev"
+Requires-Dist: pytest-cov>=5.0.0; extra == "dev"
+Requires-Dist: ruff>=0.6.0; extra == "dev"
+Requires-Dist: mypy>=1.11.0; extra == "dev"
+Requires-Dist: types-PyYAML>=6.0.12.20240808; extra == "dev"

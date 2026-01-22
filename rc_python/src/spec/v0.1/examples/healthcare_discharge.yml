@@ -1,0 +1,47 @@
+version: "0.1"
+world:
+  name: "healthcare_discharge"
+  description: "Discharge workflow under operational pressure."
+
+intent:
+  priorities:
+    - safety
+    - reliability
+    - cost
+
+constraints:
+  - id: "C1"
+    description: "False negatives must be rare."
+    metric: "false_negative_rate"
+    op: "<="
+    value: 0.01
+    severity: "fatal"
+
+  - id: "C2"
+    description: "Readmission risk should not exceed target."
+    metric: "readmission_rate"
+    op: "<="
+    value: 0.08
+    severity: "warn"
+
+incentives:
+  rewards:
+    - metric: "throughput"
+      weight: 0.9
+    - metric: "cost_reduction"
+      weight: 0.7
+  penalties:
+    - metric: "patient_complaints"
+      weight: 0.2
+
+time:
+  horizon_steps: 24
+  dynamics:
+    - metric: "automation_ratio"
+      starts_at: 0.1
+      drift_per_step: 0.04
+      clamp: [0.0, 1.0]
+    - metric: "human_review_rate"
+      starts_at: 0.9
+      drift_per_step: -0.03
+      clamp: [0.0, 1.0]
