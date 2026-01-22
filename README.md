@@ -231,6 +231,61 @@ but gradually optimizes against its stated intent.
 
 ---
 
+## Demo: Before/After — Structural Risk as a Compile-Time Signal
+
+Reality Compiler is designed to be falsifiable:  
+change the spec, and the analysis should change in a meaningful way.
+
+#### Before - Intention declared, incentives misaligned (CRITICAL)
+
+```
+Reality Compiler — Static Analysis
+Spec: src\spec\v0.1\examples\healthcare_discharge.yml
+Ruleset: v0.1
+
+S1: Intent-Incentive Conflict  [CRITICAL]
+- top_intent: safety
+- top_intent_bucket: safety
+- dominant_bucket: speed
+- dominance_ratio: 0.5
+- intent_reinforcement: 0.0
+- fatal_constraint_coverage_ratio: 0.0
+- time_amplification_factor: 1.5
+Score: 1.0
+```
+
+Interpretation
+
+- The system claims safety is the top priority, but incentives are dominated by speed.
+- A fatal safety constraint exists, yet it is not reinforced by the incentive structure.
+- Time dynamics amplify drift via increasing automation and decreasing review.
+
+
+#### After - Guradrails + reinforcement(LOW)
+
+```
+Reality Compiler — Static Analysis
+Spec: src\spec\v0.1\examples\healthcare_discharge_fixed.yml
+Ruleset: v0.1
+
+S1: Intent-Incentive Conflict  [LOW]
+- top_intent: safety
+- top_intent_bucket: safety
+- dominant_bucket: safety
+- dominance_ratio: 0.5833
+- intent_reinforcement: 0.5833
+- fatal_constraint_coverage_ratio: 1.0
+- time_amplification_factor: 1.5
+Score: 0.0
+```
+What changed
+
+- Added an explicit penalty tied to false_negative_rate (fatal constraint reinforcement).
+- Incentive dominance moved from speed to safety.
+- Result: intent and incentives align, and structural risk drops from CRITICAL to LOW.
+
+---
+
 ## What This Project Refuses to Do
 Reality Compiler explicitly refuses to:
 

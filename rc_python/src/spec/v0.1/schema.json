@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["version", "intent", "incentives"],
+  "properties": {
+    "version": { "type": "string" },
+    "intent": {
+      "type": "object",
+      "required": ["priorities"],
+      "properties": {
+        "priorities": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "incentives": {
+      "type": "object",
+      "properties": {
+        "rewards": { "type": "array" },
+        "penalties": { "type": "array" }
+      }
+    },
+    "time": { "type": "object" }
+  }
+}
