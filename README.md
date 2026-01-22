@@ -1,187 +1,299 @@
 # Reality Compiler
 
-> **A system for detecting inevitable failure in complex socio-technical systems.**
+> **A structural analysis system for understanding how complex systems fail over time.**
 
-Reality Compiler is not a prediction engine.  
-It does not attempt to forecast the future, optimize outcomes, or replace human judgment.
+Reality Compiler is an attempt to reason about failure *before* it becomes visible,
+measurable, or catastrophic.
 
-Instead, it asks a different question:
+It does not predict outcomes.
+It does not optimize metrics.
+It does not automate decisions.
 
-> **“Given the rules, incentives, and priorities we define today,  
-what kinds of failure become inevitable tomorrow?”**
-
----
-
-## Why This Project Exists
-
-Modern systems are extremely good at executing decisions —  
-but remarkably bad at understanding **why** those decisions were made  
-and **how** they slowly drift away from their original intent.
-
-We log:
-- events  
-- metrics  
-- outputs  
-
-But we almost never formalize:
-- intent  
-- priorities  
-- constraints  
-- incentives  
-
-As a result, systems often:
-- succeed functionally  
-- while failing structurally  
-
-Reality Compiler exists to make that failure visible **before** it becomes irreversible.
+It exists to surface **structural contradictions** —
+the kind that quietly accumulate until failure becomes inevitable.
 
 ---
 
-## Core Idea
+## The Problem This Project Addresses
 
-Reality Compiler treats **reality itself** as a compilable artifact.
+Most modern systems fail *after* they succeed.
 
-Just as a software compiler can detect errors before execution,
-Reality Compiler attempts to surface **structural risks** before they manifest in the real world.
+They meet KPIs.
+They scale.
+They automate.
+They reduce cost.
 
-It focuses on four elements:
+And yet, over time, they drift away from the very intent that justified their existence.
 
-- **Intent** — what the system claims to optimize for
-- **Constraints** — what must never be violated
-- **Incentives** — what behavior is actually rewarded
-- **Time** — how automation and feedback loops evolve
+This happens not because of bugs,
+but because **intent is not a first-class concept in software systems**.
 
-Failure is rarely sudden.  
-It emerges gradually, through misalignment.
+We store:
+- events
+- states
+- metrics
+- logs
+
+But we rarely store:
+- *why* something is done
+- *what must never be violated*
+- *which trade-offs are acceptable*
+- *who remains accountable over time*
+
+Reality Compiler exists to make those invisible dimensions explicit.
 
 ---
 
-## What Reality Compiler Is (and Is Not)
+## A Different Way to Think About Systems
 
-### It **is**
-- A structural risk detector
-- A static + temporal analysis tool
-- A way to reason about systems before outcomes occur
-- A bridge between human intent and automated behavior
+Reality Compiler is built on a simple but uncomfortable observation:
 
-### It **is not**
-- A forecasting engine
-- A moral authority
-- A simulation of “the real world”
-- A replacement for human responsibility
+> **Most failures are not caused by bad decisions,
+but by good decisions repeated under misaligned incentives.**
 
-Reality Compiler does not tell you *what is right*.  
-It tells you *where things break*.
+Systems rarely collapse suddenly.
+They decay gradually.
+
+Optimization pressures accumulate.
+Automation amplifies bias.
+Human responsibility erodes.
+Feedback loops harden.
+
+By the time failure is obvious,
+it is already structurally guaranteed.
+
+---
+
+## Reality as a Compilable Artifact
+
+This project treats reality not as something to be predicted,
+but as something to be **analyzed structurally**.
+
+Just as a compiler examines source code for contradictions before execution,
+Reality Compiler examines systems for contradictions before outcomes occur.
+
+The goal is not control.
+The goal is **legibility**.
+
+---
+
+## Core Concepts
+
+### 1. Intent
+
+Intent represents what a system *claims* to optimize for.
+
+Examples:
+- “Patient safety is the top priority.”
+- “Fairness matters more than profit.”
+- “Reliability must not be traded for speed.”
+
+Intent is often declared in documents —
+but rarely enforced in systems.
+
+Reality Compiler treats intent as structured input, not prose.
+
+---
+
+### 2. Constraints
+
+Constraints define what must *never* be violated,
+even under pressure.
+
+Constraints are brittle by nature.
+They are the first thing systems compromise when incentives are misaligned.
+
+Reality Compiler highlights where constraints exist only symbolically.
+
+---
+
+### 3. Incentives
+
+Incentives define what behavior is actually rewarded.
+
+If intent and incentives diverge,
+the system will always follow incentives.
+
+Always.
+
+Reality Compiler assumes incentives dominate behavior,
+and analyzes systems accordingly.
+
+---
+
+### 4. Time
+
+Time is the most underestimated variable in system design.
+
+Many systems are stable:
+- at low scale
+- with human oversight
+- in early deployment
+
+Reality Compiler is explicitly concerned with what happens *after*:
+- automation increases
+- feedback loops tighten
+- human intervention decreases
+
+Failure is often a time-dependent property.
+
+---
+
+## What Reality Compiler Analyzes
+
+Reality Compiler focuses on **structural risk**, including:
+
+- Priority inversion  
+- Incentive drift  
+- Constraint erosion  
+- Automation bias  
+- Responsibility dilution  
+
+These are not bugs.
+They are emergent properties.
 
 ---
 
 ## Architecture Overview
 
-Reality Compiler consists of four primary components:
+### Reality Specification (Reality Spec)
 
-### 1. Reality Spec (DSL)
-
-A declarative specification that encodes:
+A declarative specification describing:
 - goals and priorities
-- hard constraints
-- incentive structures
-- automation ratios
+- constraints
+- incentives
+- automation assumptions
 
-This spec functions as a **constitution** for the system being analyzed.
-
----
-
-### 2. Static Risk Analyzer
-
-Performs compile-time analysis to detect:
-- priority inversions
-- incentive misalignment
-- constraint conflicts
-- responsibility erosion
-
-The output resembles compiler errors — but for reality.
+The specification functions as a **constitutional layer**,
+separate from implementation.
 
 ---
 
-### 3. Temporal Drift Simulator
+### Static Structural Analysis
 
-Models how systems evolve over time:
-- increasing automation
-- reduced human intervention
-- feedback amplification
+Before any simulation,
+Reality Compiler performs compile-time checks:
 
-The goal is not accuracy, but **directionality**.
+- Are incentives aligned with intent?
+- Do constraints override rewards?
+- Are priorities internally consistent?
 
----
-
-### 4. Explanation Layer
-
-Uses natural language generation to explain:
-- why a configuration is risky
-- when instability emerges
-- which assumptions lead to failure
-
-This layer exists to keep humans in the loop.
+These checks produce *structural warnings*,
+not runtime errors.
 
 ---
 
-## Example Output
+### Temporal Drift Modeling
+
+The system then evaluates how these structures behave over time.
+
+This is not a high-fidelity simulation.
+It is a directional analysis.
+
+The goal is to answer:
+> “If nothing else changes, what gets amplified?”
+
+---
+
+### Explanation Layer
+
+Reality Compiler intentionally explains its findings in natural language.
+
+Not because the system is uncertain,
+but because **humans must remain responsible**.
+
+If a system cannot explain its risks,
+it should not be trusted.
+
+---
+
+## Example Analysis Output
 
 ```text
-RISK LEVEL: HIGH
+STRUCTURAL RISK DETECTED
 
-Detected Issues:
-- Incentive rewards speed over safety
-- Safety constraint is declared but not reinforced
-- Automation amplifies error after iteration ~14
+Primary Intent:
+- Safety
 
-Summary:
-This system remains stable initially, but gradually optimizes
-against its own stated intent.
+Observed Optimization Pressure:
+- Speed
+- Cost reduction
+
+Drift Pattern:
+- Automation increases throughput
+- Human review decreases
+- Constraint violations become statistically invisible
+
+Conclusion:
+This system initially appears stable,
+but gradually optimizes against its stated intent.
 ```
 
 ---
 
-## Design Philosophy
+## What This Project Refuses to Do
+Reality Compiler explicitly refuses to:
 
-Reality Compiler is built on a few core beliefs:
+- Predict the future
+- Assign moral authority
+- Replace human judgment
+- Claim correctness
 
-- Most catastrophic failures are structural, not accidental
-- Optimization without intent awareness is dangerous
-- Incentives matter more than rules
-- Time is the most underestimated variable in system design
+Its purpose is not to decide —
+but to reveal.
 
-This project prioritizes clarity over completeness and understanding over control.
+---
 
+## Design Principles
 
-## Status
+- Structure over outcomes
+- Intent over optimization
+- Explanation over automation
+- Legibility over control
 
-This project is intentionally exploratory.
+Reality Compiler values understanding more than precision.
 
-- It is not a product.
-- It is not complete.
-- It is not optimized.
+---
 
-It is a working attempt to make invisible risks legible.
+## Project Status
 
+This repository is exploratory by design.
+
+It is incomplete.
+It is opinionated.
+It is intentionally constrained.
+
+The goal is not adoption —
+but articulation.
+
+---
 
 ## Who This Is For
 
-- Engineers designing large-scale systems
-- Teams deploying automated decision-making
-- Anyone interested in the intersection of technology, policy, and ethics
+This project is for people who design systems that:
 
+- operate at scale
+- involve automation
+- affect real people
+- run long enough to drift
 
-## Author’s Note
+Especially those who ask:
+“What happens if this keeps running?”
 
-Reality Compiler represents how I think about systems.
+---
 
-I am less interested in what a system does today
-and more interested in what it becomes over time.
+## Author’s Perspective
 
-If this repository resonates with you,
-the goal has already been achieved.
+This project reflects how I think about engineering.
 
+I am less interested in whether a system works today,
+and more interested in whether it fails gracefully tomorrow.
+
+If this repository changes how you think about systems —
+even slightly —
+it has already succeeded.
+
+---
 
 ## License
 MIT
