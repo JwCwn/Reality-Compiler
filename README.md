@@ -138,7 +138,9 @@ Detected Issues:
 Summary:
 This system remains stable initially, but gradually optimizes
 against its own stated intent.
+```
 
+---
 
 ## Design Philosophy
 
